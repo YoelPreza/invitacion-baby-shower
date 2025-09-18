@@ -38,6 +38,7 @@ const RSVPForm: React.FC = () => {
         dietary_restrictions: data.dietaryRestrictions || 'Ninguna',
         reply_to: data.email
       }
+console.log(templateParams);
 
       // Reemplaza estos valores con tu configuración de EmailJS
       await emailjs.send(

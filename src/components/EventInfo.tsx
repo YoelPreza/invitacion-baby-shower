@@ -50,12 +50,6 @@ const EventInfo: React.FC = () => {
       title: 'Lugar',
       value: 'Jardín Rosa Bella\nAv. Principal #123',
       color: 'text-green-500'
-    },
-    {
-      icon: Users,
-      title: 'Código de Vestimenta',
-      value: 'Casual Elegante\nColores pasteles',
-      color: 'text-purple-500'
     }
   ]
   
@@ -75,7 +69,7 @@ const EventInfo: React.FC = () => {
           <div className="w-24 h-1 bg-gradient-to-r from-pink-400 to-blue-400 mx-auto rounded-full"></div>
         </motion.div>
         
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
+        <div className="grid md:grid-cols-3 lg:grid-cols-3 gap-8 mb-16">
           {eventDetails.map((detail, index) => (
             <motion.div
               key={index}

@@ -5,7 +5,7 @@ import { Heart, Star } from 'lucide-react'
 const HeroSection: React.FC = () => {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-soft-pink via-baby-pink to-soft-blue">
-      <div className="absolute inset-0 opacity-10">
+      <div>
         {[...Array(20)].map((_, i) => (
           <motion.div
             key={i}
@@ -73,7 +73,7 @@ const HeroSection: React.FC = () => {
             className="mt-8"
           >
             <motion.button
-              className="bg-gradient-to-r from-pink-500 to-blue-500 text-white px-8 py-4 rounded-full text-lg font-medium shadow-lg hover:shadow-xl transition-shadow duration-300"
+              className="bg-gradient-to-r from-pink-500 to-pink-500 text-white px-8 py-4 rounded-full text-lg font-medium shadow-lg hover:shadow-xl transition-shadow duration-300"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               onClick={() => {
@@ -85,16 +85,6 @@ const HeroSection: React.FC = () => {
           </motion.div>
         </motion.div>
       </div>
-      
-      <motion.div
-        className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
-        animate={{ y: [0, 10, 0] }}
-        transition={{ duration: 2, repeat: Infinity }}
-      >
-        <div className="w-6 h-10 border-2 border-gray-400 rounded-full flex justify-center">
-          <div className="w-1 h-3 bg-gray-400 rounded-full mt-2"></div>
-        </div>
-      </motion.div>
     </section>
   )
 }

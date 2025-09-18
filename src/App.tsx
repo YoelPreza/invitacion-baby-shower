@@ -13,7 +13,6 @@ const App: FC = () => {
     <div className="min-h-screen">
       <HeroSection />
       <EventInfo />
-      <ParentsStory />
       <InteractiveGames />
       <PhotoGallery />
       <RSVPForm />

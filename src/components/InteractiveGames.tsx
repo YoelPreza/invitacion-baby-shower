@@ -8,12 +8,6 @@ const InteractiveGames: React.FC = () => {
 
   const games = [
     {
-      title: '¿Niño o Niña?',
-      options: ['Niño 💙', 'Niña 💗'],
-      key: 'gender',
-      icon: '🎭'
-    },
-    {
       title: 'Color de Ojos',
       options: ['Marrones', 'Azules', 'Verdes', 'Color Miel'],
       key: 'eyes',
@@ -38,6 +32,7 @@ const InteractiveGames: React.FC = () => {
       ...prev,
       [gameKey]: prediction
     }))
+    console.log(selectedPredictions)
   }
 
   const submitPredictions = () => {
@@ -64,7 +59,7 @@ const InteractiveGames: React.FC = () => {
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 gap-8 mb-12">
+        <div className="grid md:grid-cols-3 gap-8 mb-12">
           {games.map((game, index) => (
             <motion.div
               key={index}
@@ -148,34 +143,6 @@ const InteractiveGames: React.FC = () => {
               </p>
             </motion.div>
           )}
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          viewport={{ once: true }}
-          className="mt-16 grid md:grid-cols-2 gap-8"
-        >
-          <div className="bg-gradient-to-br from-pink-100 to-pink-200 rounded-2xl p-6 text-center">
-            <Sparkles className="w-12 h-12 text-pink-500 mx-auto mb-4" />
-            <h3 className="text-xl font-semibold text-gray-800 mb-2">
-              Consejo para Papás
-            </h3>
-            <p className="text-gray-600">
-              "Escriban una carta para su futuro hijo/a y léanla en su cumpleaños número 18"
-            </p>
-          </div>
-
-          <div className="bg-gradient-to-br from-blue-100 to-blue-200 rounded-2xl p-6 text-center">
-            <Gift className="w-12 h-12 text-blue-500 mx-auto mb-4" />
-            <h3 className="text-xl font-semibold text-gray-800 mb-2">
-              Tradición Especial
-            </h3>
-            <p className="text-gray-600">
-              "Cada invitado puede traer un libro infantil con una dedicatoria especial"
-            </p>
-          </div>
         </motion.div>
       </div>
     </section>
