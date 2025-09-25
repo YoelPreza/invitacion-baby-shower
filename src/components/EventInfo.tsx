@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
-import { Calendar, Clock, MapPin, Users } from 'lucide-react'
+import { Calendar, Clock, MapPin } from 'lucide-react'
 
 interface TimeLeft {
   days: number
@@ -12,7 +12,7 @@ interface TimeLeft {
 const EventInfo: React.FC = () => {
   const [timeLeft, setTimeLeft] = useState<TimeLeft>({ days: 0, hours: 0, minutes: 0, seconds: 0 })
   
-  const eventDate = new Date('2024-12-15T15:00:00')
+  const eventDate = new Date('2025-10-25T16:00:00')
   
   useEffect(() => {
     const timer = setInterval(() => {
@@ -32,33 +32,6 @@ const EventInfo: React.FC = () => {
     return () => clearInterval(timer)
   }, [])
   
-  const eventDetails = [
-    {
-      icon: Calendar,
-      title: 'Fecha',
-      value: 'Domingo, 15 de Diciembre',
-      color: 'text-pink-500'
-    },
-    {
-      icon: Clock,
-      title: 'Hora',
-      value: '3:00 PM - 7:00 PM',
-      color: 'text-blue-500'
-    },
-    {
-      icon: MapPin,
-      title: 'Lugar',
-      value: 'Jardín Rosa Bella\nAv. Principal #123',
-      color: 'text-green-500'
-    },
-    {
-      icon: Users,
-      title: 'Código de Vestimenta',
-      value: 'Casual Elegante\nColores pasteles',
-      color: 'text-purple-500'
-    }
-  ]
-  
   return (
     <section id="event-info" className="py-20 bg-gradient-to-b from-white to-soft-pink">
       <div className="max-w-6xl mx-auto px-4">
@@ -75,40 +48,35 @@ const EventInfo: React.FC = () => {
           <div className="w-24 h-1 bg-gradient-to-r from-pink-400 to-blue-400 mx-auto rounded-full"></div>
         </motion.div>
         
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
-          {eventDetails.map((detail, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              viewport={{ once: true }}
-              className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-shadow duration-300"
-            >
-              <motion.div
-                className={`inline-flex items-center justify-center w-12 h-12 rounded-full bg-gray-100 ${detail.color} mb-4`}
-                whileHover={{ scale: 1.1, rotate: 5 }}
-              >
-                <detail.icon size={24} />
-              </motion.div>
-              
-              <h3 className="text-lg font-semibold text-gray-800 mb-2">
-                {detail.title}
-              </h3>
-              
-              <p className="text-gray-600 whitespace-pre-line">
-                {detail.value}
-              </p>
-            </motion.div>
-          ))}
-        </div>
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+          className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-shadow duration-300 text-center mb-16"
+        >
+          <div className="flex flex-col space-y-4">
+            <div className="flex items-center space-x-2 text-pink-500">
+              <Calendar size={22} />
+              <span className="text-gray-800 font-semibold">Sábado, 25 de Octubre</span>
+            </div>
+            <div className="flex items-center space-x-2 text-blue-500">
+              <Clock size={22} />
+              <span className="text-gray-800 font-semibold">4:00 PM</span>
+            </div>
+            <div className="flex items-center space-x-2 text-green-500">
+              <MapPin size={22} />
+              <span className="text-gray-800 font-semibold">"El Saloncito"</span>
+            </div>
+          </div>
+        </motion.div>
         
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           whileInView={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="bg-gradient-to-r from-pink-500 to-blue-500 rounded-3xl p-8 text-white text-center shadow-xl"
+          className="bg-gradient-to-bl from-[#FF8DA1] via-[#FF1493] to-[#FF00FF] rounded-3xl p-8 text-white text-center shadow-xl"
         >
           <h3 className="text-3xl font-dancing mb-6">¡Faltan solo!</h3>
           

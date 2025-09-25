@@ -2,16 +2,14 @@ import React, { useState } from 'react'
 import { motion } from 'framer-motion'
 import { useForm } from 'react-hook-form'
 import emailjs from '@emailjs/browser'
-import { Mail, Send, CheckCircle, AlertCircle, User, Users, MessageSquare } from 'lucide-react'
+import { Send, CheckCircle, AlertCircle, User, Users, MessageSquare } from 'lucide-react'
 
 interface FormData {
   name: string
   email: string
-  phone?: string
-  attendance: 'yes' | 'no' | 'maybe'
+  attendance: 'yes' | 'no' 
   guests: number
   message?: string
-  dietaryRestrictions?: string
 }
 
 const RSVPForm: React.FC = () => {
@@ -26,25 +24,19 @@ const RSVPForm: React.FC = () => {
 
     try {
       const templateParams = {
-        to_name: 'María y Carlos',
         from_name: data.name,
-        from_email: data.email,
-        phone: data.phone || 'No especificado',
-        attendance: data.attendance === 'yes' ? 'Sí asistiré' : 
-                   data.attendance === 'no' ? 'No podré asistir' : 
-                   'Tal vez pueda asistir',
+        attendance: data.attendance === 'yes' ? 'Sí asistiré' : 'No podré asistir',
         guest_count: data.guests,
         message: data.message || 'Sin mensaje adicional',
-        dietary_restrictions: data.dietaryRestrictions || 'Ninguna',
         reply_to: data.email
       }
 
       // Reemplaza estos valores con tu configuración de EmailJS
       await emailjs.send(
-        'your_service_id',  // Service ID
-        'your_template_id', // Template ID
+        'baby_shower',  // Service ID
+        'template_88xc2qr', // Template ID
         templateParams,
-        'your_public_key'   // Public Key
+        'b99Px5IeD2_za2bEi'   // Public Key
       )
 
       setSubmitStatus('success')
@@ -60,7 +52,6 @@ const RSVPForm: React.FC = () => {
 
   const attendanceOptions = [
     { value: 'yes', label: '¡Sí, estaré ahí! 🎉', color: 'from-green-500 to-emerald-500' },
-    { value: 'maybe', label: 'Tal vez pueda asistir 🤔', color: 'from-yellow-500 to-orange-500' },
     { value: 'no', label: 'No podré asistir 😔', color: 'from-gray-500 to-gray-600' }
   ]
 
@@ -72,7 +63,7 @@ const RSVPForm: React.FC = () => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          className="text-center mb-8"
         >
           <h2 className="text-4xl md:text-5xl font-dancing text-gray-800 mb-4">
             Confirma tu Asistencia
@@ -108,27 +99,6 @@ const RSVPForm: React.FC = () => {
                 )}
               </div>
 
-              <div>
-                <label className="block text-gray-700 font-medium mb-2">
-                  <Mail className="inline w-4 h-4 mr-2" />
-                  Correo Electrónico *
-                </label>
-                <input
-                  type="email"
-                  {...register('email', { 
-                    required: 'El email es requerido',
-                    pattern: {
-                      value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                      message: 'Email inválido'
-                    }
-                  })}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-pink-400 focus:border-transparent transition-all duration-300"
-                  placeholder="tu@email.com"
-                />
-                {errors.email && (
-                  <p className="text-red-500 text-sm mt-1">{errors.email.message}</p>
-                )}
-              </div>
             </div>
 
             <div>
@@ -146,14 +116,23 @@ const RSVPForm: React.FC = () => {
                       type="radio"
                       value={option.value}
                       {...register('attendance', { required: 'Selecciona una opción' })}
-                      className="sr-only"
+                      className="sr-only peer"
                     />
-                    <div className={`p-4 rounded-xl border-2 transition-all duration-300 bg-gradient-to-r ${option.color} text-white opacity-80 hover:opacity-100`}>
+                    <div
+                      className={`
+                        p-4 rounded-xl border-2 transition-all duration-300 
+                        peer-checked:text-white
+                        peer-checked:bg-gradient-to-r ${option.color} 
+                        ${option.value === 'yes' ? 'border-green-500' : 'border-gray-500'}
+                        text-gray-800 bg-white
+                      `}
+                    >
                       <span className="font-medium">{option.label}</span>
                     </div>
                   </motion.label>
                 ))}
               </div>
+
               {errors.attendance && (
                 <p className="text-red-500 text-sm mt-1">{errors.attendance.message}</p>
               )}
@@ -176,30 +155,6 @@ const RSVPForm: React.FC = () => {
                   <option value="4">4+ acompañantes</option>
                 </select>
               </div>
-
-              <div>
-                <label className="block text-gray-700 font-medium mb-2">
-                  Teléfono (opcional)
-                </label>
-                <input
-                  type="tel"
-                  {...register('phone')}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-pink-400 focus:border-transparent transition-all duration-300"
-                  placeholder="+1 234 567 8900"
-                />
-              </div>
-            </div>
-
-            <div>
-              <label className="block text-gray-700 font-medium mb-2">
-                Restricciones Alimentarias (opcional)
-              </label>
-              <input
-                type="text"
-                {...register('dietaryRestrictions')}
-                className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-pink-400 focus:border-transparent transition-all duration-300"
-                placeholder="Vegetariano, sin gluten, alergias, etc."
-              />
             </div>
 
             <div>
@@ -219,10 +174,10 @@ const RSVPForm: React.FC = () => {
               <motion.button
                 type="submit"
                 disabled={isSubmitting}
-                className={`inline-flex items-center gap-2 px-8 py-4 rounded-full font-semibold text-lg transition-all duration-300 ${
+                className={`inline-flex items-center gap-2 px-8 py-4 min-w-[280px] rounded-full font-semibold text-base transition-all duration-300 ${
                   isSubmitting
                     ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
-                    : 'bg-gradient-to-r from-pink-500 to-blue-500 text-white hover:shadow-xl'
+                    : 'bg-[#FF1493] text-white hover:shadow-xl'
                 }`}
                 whileHover={!isSubmitting ? { scale: 1.05 } : {}}
                 whileTap={!isSubmitting ? { scale: 0.95 } : {}}
@@ -269,25 +224,6 @@ const RSVPForm: React.FC = () => {
               )}
             </motion.div>
           )}
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.3 }}
-          viewport={{ once: true }}
-          className="text-center mt-12"
-        >
-          <div className="bg-gradient-to-r from-pink-50 to-blue-50 rounded-2xl p-6 max-w-2xl mx-auto">
-            <p className="text-gray-600">
-              <strong>Nota:</strong> Si tienes alguna pregunta o necesitas ayuda especial, 
-              no dudes en contactarnos directamente.
-            </p>
-            <div className="flex justify-center gap-4 mt-4 text-sm text-gray-500">
-              <span>📞 +1 (555) 123-4567</span>
-              <span>📧 maria.carlos@email.com</span>
-            </div>
-          </div>
         </motion.div>
       </div>
     </section>
