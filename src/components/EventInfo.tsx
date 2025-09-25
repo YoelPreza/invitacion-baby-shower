@@ -12,7 +12,7 @@ interface TimeLeft {
 const EventInfo: React.FC = () => {
   const [timeLeft, setTimeLeft] = useState<TimeLeft>({ days: 0, hours: 0, minutes: 0, seconds: 0 })
   
-  const eventDate = new Date('2025-10-25T16:00:00')
+  const eventDate = new Date('2025-10-25T15:15:00')
   
   useEffect(() => {
     const timer = setInterval(() => {
