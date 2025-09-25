@@ -61,7 +61,7 @@ const LocationMap: React.FC = () => {
                   <Clock className="w-5 h-5 text-green-500" />
                   <div>
                     <p className="font-medium text-gray-800">Horario</p>
-                    <p className="text-gray-600">4:00 PM</p>
+                    <p className="text-gray-600">3:15 PM</p>
                   </div>
                 </div>
               </div>

@@ -62,7 +62,7 @@ const EventInfo: React.FC = () => {
             </div>
             <div className="flex items-center space-x-2 text-blue-500">
               <Clock size={22} />
-              <span className="text-gray-800 font-semibold">4:00 PM</span>
+              <span className="text-gray-800 font-semibold">3:15 PM</span>
             </div>
             <div className="flex items-center space-x-2 text-green-500">
               <MapPin size={22} />
