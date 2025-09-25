@@ -1,12 +1,13 @@
 import React from 'react'
 import { motion } from 'framer-motion'
-import { Heart, Star } from 'lucide-react'
+import { Star } from 'lucide-react'
 
 const HeroSection: React.FC = () => {
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-soft-pink via-baby-pink to-soft-blue">
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-pink-100 via-pink-200 to-pink-100">
+      {/* Estrellas flotantes */}
       <div>
-        {[...Array(20)].map((_, i) => (
+        {[...Array(15)].map((_, i) => (
           <motion.div
             key={i}
             className="absolute"
@@ -15,8 +16,8 @@ const HeroSection: React.FC = () => {
               top: `${Math.random() * 100}%`,
             }}
             animate={{
-              y: [-20, 20, -20],
-              rotate: [0, 360],
+              y: [-10, 10, -10],
+              opacity: [0.5, 1, 0.5],
               scale: [1, 1.2, 1],
             }}
             transition={{
@@ -25,66 +26,52 @@ const HeroSection: React.FC = () => {
               delay: Math.random() * 2,
             }}
           >
-            {i % 2 === 0 ? (
-              <Heart className="w-6 h-6 text-pink-300" />
-            ) : (
-              <Star className="w-4 h-4 text-blue-300" />
-            )}
+            <Star className="w-4 h-4 text-yellow-400" />
           </motion.div>
         ))}
       </div>
-      
-      <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">
-        <motion.div
-          initial={{ opacity: 0, y: 50 }}
+
+      {/* Nubes decorativas */}
+      <motion.img
+        src="/public/images/nubes2.png"
+        alt="cloud"
+        className="absolute top-0 left-0 w-40 opacity-80"
+        animate={{ y: [0, 20, 0] }}
+        transition={{ duration: 6, repeat: Infinity }}
+      />
+      <motion.img
+        src="/public/images/nubes2.png"
+        alt="cloud"
+        className="absolute top-5 right-0 w-48 opacity-80"
+        animate={{ y: [0, 15, 0] }}
+        transition={{ duration: 8, repeat: Infinity }}
+      />
+
+      {/* Contenido principal */}
+      <div className="relative z-10 text-center bottom-16 px-4 max-w-3xl mx-auto">
+        <motion.h2
+          className="text-2xl md:text-4xl font-poppins text-gray-700 mb-4"
+          initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 0.2 }}
-          className="space-y-6"
+          transition={{ duration: 1, delay: 0.3 }}
         >
-          <motion.h1
-            className="text-6xl md:text-8xl font-dancing text-pink-600 mb-4"
-            animate={{ scale: [1, 1.05, 1] }}
-            transition={{ duration: 4, repeat: Infinity }}
-          >
-            Baby Shower
-          </motion.h1>
-          
-          <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1, delay: 0.5 }}
-            className="space-y-4"
-          >
-            <h2 className="text-2xl md:text-4xl font-poppins font-light text-gray-700">
-              ¡Celebremos la llegada de nuestro pequeño tesoro!
-            </h2>
-            
-            <div className="w-24 h-1 bg-gradient-to-r from-pink-400 to-blue-400 mx-auto rounded-full"></div>
-            
-            <p className="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto">
-              Te invitamos a compartir este momento especial lleno de amor, alegría y bendiciones
-            </p>
-          </motion.div>
-          
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 1 }}
-            className="mt-8"
-          >
-            <motion.button
-              className="bg-gradient-to-r from-pink-500 to-pink-500 text-white px-8 py-4 rounded-full text-lg font-medium shadow-lg hover:shadow-xl transition-shadow duration-300"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              onClick={() => {
-                document.getElementById('event-info')?.scrollIntoView({ behavior: 'smooth' })
-              }}
-            >
-              Ver Detalles del Evento
-            </motion.button>
-          </motion.div>
-        </motion.div>
+          Te invitamos a celebrar el <br />
+          <span className="text-pink-500 font-dancing text-5xl">Baby Shower</span>
+        </motion.h2>
+
+        <p className="text-lg md:text-xl text-gray-600 mb-8">
+          de nuestra pequeña princesa que viene en camino
+        </p>
       </div>
+
+      <motion.img
+        src="/public/images/conejita.png"
+        alt="bunny"
+        className="absolute bottom-10 mx-auto w-52 md:w-64"
+        initial={{ y: 50, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 1.5, delay: 0.5 }}
+      />
     </section>
   )
 }
