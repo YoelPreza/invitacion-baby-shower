@@ -33,14 +33,14 @@ const HeroSection: React.FC = () => {
 
       {/* Nubes decorativas */}
       <motion.img
-        src="/dist/assets/nubes2.png"
+        src="/assets/nubes2.png"
         alt="cloud"
         className="absolute top-0 left-0 w-40 opacity-80"
         animate={{ y: [0, 20, 0] }}
         transition={{ duration: 6, repeat: Infinity }}
       />
       <motion.img
-        src="/dist/assets/nubes2.png"
+        src="/assets/nubes2.png"
         alt="cloud"
         className="absolute top-5 right-0 w-48 opacity-80"
         animate={{ y: [0, 15, 0] }}
@@ -65,7 +65,7 @@ const HeroSection: React.FC = () => {
       </div>
 
       <motion.img
-        src="/dist/assets/conejita.png"
+        src="/assets/conejita.png"
         alt="bunny"
         className="absolute bottom-10 mx-auto w-52 md:w-64"
         initial={{ y: 50, opacity: 0 }}
